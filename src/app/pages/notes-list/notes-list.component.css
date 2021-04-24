@@ -8,3 +8,7 @@
 .notes-list {
   margin-top: 35px;
 }
+app-note-card{
+  margin-bottom: 25px;
+  display: block;
+}
