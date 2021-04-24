@@ -1,0 +1,45 @@
+.note-card-container {
+  background: #f8f8f8;
+  border-radius: 5px;
+  box-shadow: 0px 2px 15px 2px rgba(black, 0.068);
+  transition: box-shadow 0.2s ease-out;
+  position: relative;
+}
+.note-card-content {
+  padding: 25px;
+}
+.note-card-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #a59ad7;
+}
+.note-card-container:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 4px rgba(black, 0.068);
+}
+.x-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  height: 34px;
+  width: 34px;
+  background-color: #fef1ef;
+  background-image: url("../../assets/trash.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 4px;
+  transition: opacity 0.2s ease-out;
+  /*the button is hidden by default*/
+  opacity: 0;
+}
+
+.note-card-container:hover .x-button {
+  opacity: 1;
+  transition-delay: 0.35s;
+}
+.x-button:hover {
+  background-color: darken(#fef1ef, 3%);
+}
+.x-button:active {
+  background-color: darken(#fef1ef, 5%);
+}

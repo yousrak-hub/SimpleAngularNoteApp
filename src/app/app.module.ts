@@ -5,6 +5,7 @@ import { NgModule, Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NotesListComponent } from './pages/notes-list/notes-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NoteCardComponent } from './note-card/note-card.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [AppComponent, NotesListComponent, MainLayoutComponent],
+  declarations: [AppComponent, NotesListComponent, MainLayoutComponent, NoteCardComponent],
   imports: [BrowserModule, RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [],
