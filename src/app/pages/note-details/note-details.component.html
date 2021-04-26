@@ -3,7 +3,7 @@
     <div class="field">
       <label class="label">Title</label>
       <div class="control">
-        <input type="text" name="title" [ngModel]="note.title" class="input">
+        <input type="text" name="title" required [ngModel]="note.title" class="input">
       </div>
     </div>
     <br>
@@ -19,7 +19,7 @@
         <button class="button is-text" type="button">Cancel</button>
       </div>
       <div class="control">
-        <button class="button is-success" type="submit">Save</button>
+        <button class="button is-success" type="submit" [disabled]="!noteForm.valid">Save</button>
       </div>
     </div>
   </form>
