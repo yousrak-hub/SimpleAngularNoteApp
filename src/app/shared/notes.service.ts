@@ -7,6 +7,10 @@ import { Injectable } from '@angular/core';
 export class NotesService {
   notes: Note[] = new Array<Note>();
   constructor() {}
+
+  getAll() {
+    return this.notes;
+  }
   get(id: number) {
     return this.notes[id];
   }
@@ -18,14 +22,12 @@ export class NotesService {
     let newLength = this.notes.push(note);
     return newLength - 1;
   }
-  update(id:number,title:string,body:string)
-  {
-    let note=this.notes[id];
-    note.title=title;
-    note.body=body;
+  update(id: number, title: string, body: string) {
+    let note = this.notes[id];
+    note.title = title;
+    note.body = body;
   }
-  delete(id:number)
-  {
-    this.notes.slice(id,1);
+  delete(id: number) {
+    this.notes.slice(id, 1);
   }
 }
