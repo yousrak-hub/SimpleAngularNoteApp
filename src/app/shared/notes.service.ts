@@ -28,6 +28,7 @@ export class NotesService {
     note.body = body;
   }
   delete(id: number) {
-    this.notes.slice(id, 1);
+    this.notes.splice(id, 1);
+    return this.notes;
   }
 }
