@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NoteCardComponent } from './note-card/note-card.component';
 import { NoteDetailsComponent } from './pages/note-details/note-details.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {
@@ -37,7 +38,7 @@ const routes: Routes = [
     NoteCardComponent,
     NoteDetailsComponent,
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes),FormsModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes),FormsModule,BrowserAnimationsModule],
   exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent],
