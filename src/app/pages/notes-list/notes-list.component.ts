@@ -1,5 +1,5 @@
 import { NotesService } from './../../shared/notes.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Note } from 'src/app/shared/note.model';
 import {
   animate,
@@ -96,14 +96,17 @@ import {
 export class NotesListComponent implements OnInit {
   notes: Note[] = new Array<Note>();
   filteredNotes: Note[] = new Array<Note>();
+  @ViewChild('filterInput') filterInputElRef: ElementRef<HTMLInputElement>;
   constructor(private notesService: NotesService) {}
 
   ngOnInit(): void {
     this.notes = this.notesService.getAll();
-    this.filteredNotes = this.notes;
+    this.filteredNotes = this.notesService.getAll();
   }
-  deleteNote(id: number) {
-    this.notesService.delete(id);
+  deleteNote(note: Note) {
+    let noteId = this.notesService.getId(note);
+    this.notesService.delete(noteId);
+    this.filter(this.filterInputElRef.nativeElement.value);
   }
   filter(query: string) {
     let allResults: Note[] = new Array<Note>();
@@ -117,7 +120,8 @@ export class NotesListComponent implements OnInit {
     });
     let uniqueResults = this.removeDuplicates(allResults);
     this.filteredNotes = uniqueResults;
-    console.log(query);
+    // now sort by relevancy
+    this.sortByRelevancy(allResults);
   }
   removeDuplicates(arr: Array<any>): Array<any> {
     let uniqueResults: Set<any> = new Set<any>();
@@ -136,5 +140,27 @@ export class NotesListComponent implements OnInit {
       return false;
     });
     return relevantNotes;
+  }
+  sortByRelevancy(searchResults: Note[]) {
+    let noteCountObj: Object = {}; // format - key:value => NoteId:number (note object id:count)
+    searchResults.forEach((note) => {
+      let noteId = this.notesService.getId(note);
+      if (noteCountObj[noteId]) {
+        noteCountObj[noteId] += 1;
+      } else {
+        noteCountObj[noteId] = 1;
+      }
+    });
+    this.filteredNotes = this.filteredNotes.sort((a: Note, b: Note) => {
+      let aId = this.notesService.getId(a);
+      let bId = this.notesService.getId(b);
+      let aCount = noteCountObj[aId];
+      let bCount = noteCountObj[bId];
+      return bCount - aCount;
+    });
+  }
+  generateNoteURL(note: Note): number {
+    let noteId = this.notesService.getId(note);
+    return noteId;
   }
 }
