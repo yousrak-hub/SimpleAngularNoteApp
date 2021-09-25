@@ -2,6 +2,7 @@
 https://yousrak-hub.github.io/simple-angular-note-app/
 # NoteApp
 
+Simple note application.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.4.
 
 ## Development server
